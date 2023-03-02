@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -o errexit   # exit on error
+set -o pipefail  # exit on error in pipes
+set -o nounset   # exit on unset variable
+ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+cd "$ROOT_DIR"
+
+
+# rebuild
+scripts/clean
+scripts/conan/install-mingw-w64
+scripts/conan/build-mingw-w64
+scripts/dist
